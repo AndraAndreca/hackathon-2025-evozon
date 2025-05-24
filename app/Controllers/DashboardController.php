@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 
+
 class DashboardController extends BaseController
 {
     public function __construct(
@@ -19,7 +20,14 @@ class DashboardController extends BaseController
     }
 
     public function index(Request $request, Response $response): Response
+
     {
+      error_log("Session user_id is " . ($_SESSION['user_id'] ?? 'not set'));
+    if (!isset($_SESSION['user_id'])) {
+        return $response->withHeader('Location', '/login')->withStatus(302);
+    }
+
+    $userId = $_SESSION['user_id'];
         // TODO: parse the request parameters
         // TODO: load the currently logged-in user
         // TODO: get the list of available years for the year-month selector

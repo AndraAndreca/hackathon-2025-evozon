@@ -1,6 +1,10 @@
 <?php
 
+
+
 declare(strict_types=1);
+ob_start();
+
 
 // initializing class autoloader
 require __DIR__.'/../vendor/autoload.php';
